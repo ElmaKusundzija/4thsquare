@@ -17,6 +17,10 @@ public class Client implements User {
     // TODO make list of categories
 
 
+    public Client() {
+
+    }
+
     public Client(long id, String username, String password) {
         this.id = id;
         this.username = username;

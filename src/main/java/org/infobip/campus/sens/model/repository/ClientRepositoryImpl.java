@@ -10,20 +10,22 @@ import java.util.List;
 public class ClientRepositoryImpl implements ClientRepository{
 
     private DataLists dataLists;
-    private List<Client> clients;
+    //private List<Client> clients;
     final static Logger LOGGER = LoggerFactory.getLogger(ClientRepositoryImpl.class);
 
     public ClientRepositoryImpl(DataLists dataLists) {
         this.dataLists = dataLists;
-        this.clients = dataLists.getClients();
+        //this.clients = dataLists.getClients();
     }
 
     public void createClient(Client c) {
+        List<Client> clients=dataLists.getClients();
         clients.add(c);
         dataLists.setClients(clients);
     }
 
     public void updateClient(Client c) {
+        List<Client> clients=dataLists.getClients();
         for (Client client : clients) {
             if(client.equals(c)){
                 deleteClient(client);
@@ -34,6 +36,7 @@ public class ClientRepositoryImpl implements ClientRepository{
     }
 
     public void deleteClient(Client c) {
+        List<Client> clients=dataLists.getClients();
         if(clients.remove(c)) {
             dataLists.setClients(clients);
         }
@@ -49,7 +52,9 @@ public class ClientRepositoryImpl implements ClientRepository{
     }
 
     public Client getClientByID(int id) {
-        for (Client client : dataLists.getClients()) {
+
+        List<Client> clients=dataLists.getClients();
+        for (Client client : clients) {
             if (id == client.getId()) {
                 return client;
             }
